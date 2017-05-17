@@ -1,3 +1,5 @@
+set background=dark
+
 "Nerdtree
 execute pathogen#infect()
 syntax on
@@ -31,6 +33,7 @@ set mouse=a
 
 " Clipboard
 :set clipboard+=unnamed
+:set clipboard+=unnamedplus
 :set paste
 :set go+=a
 
@@ -62,7 +65,25 @@ set wildmode=longest,list,full
 set wildmenu
 
 " Theme
-colorscheme torte
+colorscheme atom-dark-256
 
 " JS
 let g:javascript_plugin_jsdoc = 1
+
+" C/C++
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+" Golang
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+"Go To definition - F3
+:map <F4> :GoDef <c-m>
+" Compile Gocode - Ctrl-Shift-b
+:map <c-s-b> :GoBuild <c-m>
+" Same as ctrl-shift-g on eclipse for C++
+:map <F5> :GoReferrers <c-m>
