@@ -1,5 +1,4 @@
 set background=dark
-set t_Co=256
 
 "Nerdtree
 execute pathogen#infect()
@@ -22,6 +21,18 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 :map <F7> :bp <c-m>
 :map <F8> :bn <c-m>
 :map <c-b> :buffers <c-m>
+:map <F9> :cp <c-m>
+:map <F10> :cn <c-m>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" opens search results in a window w/ links and highlight the matches
+command! -nargs=+ Grep execute 'silent grep! -I -r -n --exclude-dir node_modules . -e <args>' | copen | execute 'silent /<args>'
+" shift-control-* Greps for the word under the cursor
+:map <c-h> :Grep <c-r>=expand("<cword>")<cr><cr><C-t><C-t>
 
 " Encoding
 set encoding=utf-8
@@ -85,6 +96,6 @@ let g:go_fmt_command = "goimports"
 "Go To definition - F3
 :map <F4> :GoDef <c-m>
 " Compile Gocode - Ctrl-Shift-b
-:map <c-s-b> :GoBuild <c-m>
+:nmap <s-b> :GoBuild <c-m>
 " Same as ctrl-shift-g on eclipse for C++
 :map <F5> :GoReferrers <c-m>
