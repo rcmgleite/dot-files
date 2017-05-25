@@ -1,5 +1,7 @@
 set background=dark
 
+:let mapleader = "\<tab>"
+
 "Nerdtree
 execute pathogen#infect()
 syntax on
@@ -30,10 +32,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " opens search results in a window w/ links and highlight the matches
-command! -nargs=+ Grep execute 'silent grep! -I -r -n --exclude-dir node_modules . -e <args>' | copen | execute 'silent /<args>'
+command! -nargs=+ Grep execute 'grep! -I -r -n --exclude-dir node_modules . -e <args>' | copen | execute 'silent /<args>'
 " shift-control-* Greps for the word under the cursor
-:map <c-h> :Grep <c-r>=expand("<cword>")<cr><cr><C-t><C-t>
-
+:map <leader><tab> :Grep <c-r>=expand("<cword>")<cr><cr>
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
