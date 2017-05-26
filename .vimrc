@@ -22,19 +22,19 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " switch buffer
 :map <F7> :bp <c-m>
 :map <F8> :bn <c-m>
-:map <c-b> :buffers <c-m>
+:map <leader>b :buffers <c-m>
 :map <F9> :cp <c-m>
 :map <F10> :cn <c-m>
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
 
 " opens search results in a window w/ links and highlight the matches
-command! -nargs=+ Grep execute 'grep! -I -r -n --exclude-dir node_modules . -e <args>' | copen | execute 'silent /<args>'
+command! -nargs=+ Grep execute 'grep! -I -r -w -n --exclude-dir=node_modules . -e <args>' | copen | execute 'silent /<args>'
 " shift-control-* Greps for the word under the cursor
-:map <leader><tab> :Grep <c-r>=expand("<cword>")<cr><cr>
+:map <leader><leader> :Grep <c-r>=expand("<cword>")<cr><cr>
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
