@@ -26,6 +26,15 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 :map <F9> :cp <c-m>
 :map <F10> :cn <c-m>
 
+" copy and paste
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
+
+" use space as enter
+:map <space> <c-m>
+
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
