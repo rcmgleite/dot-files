@@ -7,6 +7,8 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" PLUGINS
+
 " Open NerdTree by default
 "autocmd VimEnter * NERDTree 
 autocmd BufEnter * NERDTreeMirror
@@ -16,7 +18,21 @@ nmap <silent> <C-t> :NERDTreeToggle<CR>
 "Set F2 to put the cursor to the nerdtree
 nmap <silent> <F2> :NERDTreeFind<CR>
 
-"ctrlp
+" Tagbar
+map <c-l> :TagbarToggle<CR>
+
+" syntastic
+let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " switch buffer
@@ -40,8 +56,16 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>l <C-w>l
 
+"" CUSTOM FUNCTIONS
+fun! s:FindAndReplaceFunc(searchStr, replaceStr)
+  execute ':args *'
+  execute ':argdo %s/' . a:searchStr . '/' . a:replaceStr . '/ge | update'
+endfun
+
+"" CUSTOM COMMANDS
 " opens search results in a window w/ links and highlight the matches
 command! -nargs=+ Grep execute 'grep! -I -r -w -n --exclude-dir=node_modules . -e <args>' | copen | execute 'silent /<args>'
+command! -nargs=+ FindAndReplace call s:FindAndReplaceFunc(<f-args>)
 " shift-control-* Greps for the word under the cursor
 :map <leader><leader> :Grep <c-r>=expand("<cword>")<cr><cr>
 " Encoding
@@ -95,17 +119,17 @@ let g:javascript_plugin_jsdoc = 1
 " C/C++
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
-" Golang
+" Go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
-
-"Go To definition - F3
 :map <F4> :GoDef <c-m>
-" Compile Gocode - Ctrl-Shift-b
 :nmap <s-b> :GoBuild <c-m>
-" Same as ctrl-shift-g on eclipse for C++
 :map <F5> :GoReferrers <c-m>
+
+" Python
+let g:python_highlight_all = 1
